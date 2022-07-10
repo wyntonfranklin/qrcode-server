@@ -6,6 +6,9 @@ Integrate with your applications using different methods.
 
 
 # About QRCode Server
+
+![screenshot](./qrcode_banner.png)
+
 This simple application allows you to use your mobile device to connect with the server. 
 You can then receive the data from the scans you make on your mobile phone.
 
