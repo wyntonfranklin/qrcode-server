@@ -1,0 +1,47 @@
+{
+  "name": "QRCode-Server",
+  "version": "1.0.0",
+  "description": "A simple server to manage your QRCode app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "QRcode",
+    "barcodes",
+    "server"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^19.0.6",
+    "electron-builder": "^22.14.5"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "electron-store": "^8.0.2",
+    "ip": "^1.1.8",
+    "network": "^0.6.1",
+    "node-cmd": "^5.0.0",
+    "open": "^8.4.0"
+  },
+  "build": {
+    "appId": "com.wfranklin.qrcodeserver",
+    "copyright": "Copyright wfranklin.io",
+    "icon": "build/icon.png",
+    "appx": {
+      "displayName": "QRCode Server"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  }
+
+}

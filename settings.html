@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QRCode Server - Settings</title>
+</head>
+<style type="text/css">
+    .form-style-1 {
+        margin:1px auto;
+        max-width: 90%;
+        padding: 5px 12px 10px 20px;
+        font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+    .form-style-1 li {
+        padding: 0;
+        display: block;
+        list-style: none;
+        margin: 10px 0 0 0;
+    }
+    .form-style-1 label{
+        margin:0 0 3px 0;
+        padding:0px;
+        display:block;
+        font-weight: bold;
+    }
+    .form-style-1 input[type=text],
+    .form-style-1 input[type=date],
+    .form-style-1 input[type=datetime],
+    .form-style-1 input[type=number],
+    .form-style-1 input[type=search],
+    .form-style-1 input[type=time],
+    .form-style-1 input[type=url],
+    .form-style-1 input[type=email],
+    textarea,
+    select{
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        border:1px solid #BEBEBE;
+        padding: 7px;
+        margin:0px;
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        outline: none;
+    }
+    .form-style-1 input[type=text]:focus,
+    .form-style-1 input[type=date]:focus,
+    .form-style-1 input[type=datetime]:focus,
+    .form-style-1 input[type=number]:focus,
+    .form-style-1 input[type=search]:focus,
+    .form-style-1 input[type=time]:focus,
+    .form-style-1 input[type=url]:focus,
+    .form-style-1 input[type=email]:focus,
+    .form-style-1 textarea:focus,
+    .form-style-1 select:focus{
+        -moz-box-shadow: 0 0 8px #88D5E9;
+        -webkit-box-shadow: 0 0 8px #88D5E9;
+        box-shadow: 0 0 8px #88D5E9;
+        border: 1px solid #88D5E9;
+    }
+    .form-style-1 .field-divided{
+        width: 49%;
+    }
+
+    .form-style-1 .field-long{
+        width: 100%;
+    }
+    .form-style-1 .field-select{
+        width: 100%;
+    }
+    .form-style-1 .field-textarea{
+        height: 100px;
+    }
+    .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+        background: #4B99AD;
+        padding: 8px 15px 8px 15px;
+        border: none;
+        color: #fff;
+    }
+    .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+        background: #4691A4;
+        box-shadow:none;
+        -moz-box-shadow:none;
+        -webkit-box-shadow:none;
+    }
+    .form-style-1 .required{
+        color:red;
+    }
+
+
+    #snackbar {
+        visibility: hidden; /* Hidden by default. Visible on click */
+        min-width: 250px; /* Set a default minimum width */
+        margin-left: -125px; /* Divide value of min-width by 2 */
+        background-color: #333; /* Black background color */
+        color: #fff; /* White text color */
+        text-align: center; /* Centered text */
+        border-radius: 2px; /* Rounded borders */
+        padding: 16px; /* Padding */
+        position: fixed; /* Sit on top of the screen */
+        z-index: 1; /* Add a z-index if needed */
+        left: 50%; /* Center the snackbar */
+        bottom: 30px; /* 30px from the bottom */
+        font: 15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #snackbar.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+        However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    /* Animations to fade the snackbar in and out */
+    @-webkit-keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+        from {bottom: 0; opacity: 0;}
+        to {bottom: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+        from {bottom: 30px; opacity: 1;}
+        to {bottom: 0; opacity: 0;}
+    }
+</style>
+<body style="background: whitesmoke">
+<form id="settings-form">
+    <ul class="form-style-1">
+        <h3>Settings</h3>
+        <li>
+            <label>Port <span class="required"></span></label>
+            <input id="port" type="number" name="port" class="field-long" value="3001"/>
+        </li>
+        <li>
+            <label>IP Address (Leave blank if you're not sure)</label>
+            <input id="ipaddress" type="text" name="ipaddress" class="field-long" />
+        </li>
+        <li>
+            <label style="display: inline;">Copy to clipboard</label>
+            <input id="clipboard" type="checkbox" name="clipboard" class="" value="" checked="checked"/>
+        </li>
+        <hr>
+        <h4>Message Received Hook</h4>
+        <p>Choose an action after the message as been received</p>
+        <li>
+            <label>Action</label>
+            <select id="action" name="action" class="field-select">
+                <option value="nothing">Do nothing</option>
+                <option value="command">Execute Command</option>
+                <option value="get">Send to Url (GET)</option>
+                <option value="post">Send to Url (POST)</option>
+                <option value="file">Write to file</option>
+                <option value="afile">Append to file</option>
+            </select>
+        </li>
+        <li>
+            <label>Parameter (Enter the URL or File Path based on the action)</label>
+            <input id="actionparam" type="text" name="actionparam" class="field-long" value=""/>
+        </li>
+        <li>
+            <label>Message Append (Append char to the message)</label>
+            <input id="msgappend" type="text" name="msgappend" class="field-long" value=""/>
+        </li>
+        <li>
+            <input id="save-settings" type="button" value="Save Changes" />
+        </li>
+    </ul>
+</form>
+<div id="snackbar"></div>
+</body>
+<script>
+    const Store = require("electron-store");
+    const store = new Store();
+
+    const form = document.getElementById('settings-form');
+    let formNamesAsSetting = {
+        port : "port",
+        ipaddress: "ipaddress",
+        action : "action",
+        actionparam : "actionparam",
+        msgappend : "msgappend"
+    }
+
+    // load settings
+    for (const key in formNamesAsSetting) {
+        document.getElementById(key).value = store.get(formNamesAsSetting[key]);
+    }
+    // load checkbox
+    document.getElementById("clipboard").checked = store.get("clipboard");
+
+    document.getElementById("save-settings").addEventListener("click", function(){
+        getFormSettings();
+    });
+
+    function showSnackBar(message) {
+        var x = document.getElementById("snackbar");
+        x.innerText = message;
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+    function getFormSettings(){
+        const myFormData = new FormData(form);
+        const formDataObj = {};
+        myFormData.forEach((value, key) => (formDataObj[key] = value));
+        store.set(formDataObj)
+        store.set("clipboard", document.getElementById("clipboard").checked)
+        showSnackBar("Settings saved")
+    }
+
+</script>
+</html>
