@@ -1,16 +1,16 @@
 # QRCode Server
 
-A simple server to manage your QRCode application. 
+A simple server to compliment your QRCode mobile application. 
 Receive scans made with your mobile device and perform additional actions.
-Integrate with your applications using different methods.
+Integrate with your different applications using methods provided.
 
 
 # About QRCode Server
 
 ![screenshot](./qrcode_banner.png)
 
-This simple application allows you to use your mobile device to connect with the server. 
-You can then receive the data from the scans you make on your mobile phone.
+This simple application allows you to send QR code and Barcode scans to your computer.
+You can perform special actions once the scan is received. You can then integrate with different applications.
 
 
 ## Features
@@ -19,7 +19,7 @@ You can then receive the data from the scans you make on your mobile phone.
 * Simple and Easy to use
 * Quickly connect to server (Scan QRCode to connect mobile device)
 * Receive scans to clipboard or save to file
-* Implement actions have data is received
+* Implement actions once data is received
 * Possible to integrate with other applications
 
 ## Installation
